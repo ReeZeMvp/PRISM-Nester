@@ -1,0 +1,43 @@
+{%  extends 'base.html.twig' %}
+
+{% block title "Nester ~ Dashboard" %}
+
+{% block body %}
+    <div class="div container d-flex">
+        <div class="div container justify-content-start border border-danger rounded m-5 px-4 py-5" style="background-color: #8970bb; font-size:35px">
+            Harvesters répertoriés: {{ listed }}
+        </div>
+        <div class="container justify-content-end border border-danger rounded m-5 px-4 py-5" style="background-color: #8970bb; font-size:35px">
+            Version Nester: {{ nesterVersion }}
+        </div>
+    </div>
+    <div class="container d-flex">
+        {% if harvesters is defined %}
+            <table class="table m-5 px-4 py-5">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom de l'Harvester</th>
+                    <th scope="col">Accès à l'historique des scans</th>
+                    <th scope="col">Date du dernier scan</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for harvester in harvesters %}
+                    <tr>
+                        <th scope="row">{{ harvester.id }}</th>
+                        <td>{{ harvester.name }}</td>
+                        <td>
+                            <a href="/harvester/{{ harvester.name }}"><button type="button" class="btn btn-dark">Historique</button></a>
+                        </td>
+                        <td>{{ harvester.lastScan }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="m-5 px-4 py-5 border border-danger rounded" style="font-size: 40px; width: 100%; background-color: #8970bb">Aucun harvester en ligne.</p>
+        {% endif %}
+    </div>
+
+{%  endblock %}
