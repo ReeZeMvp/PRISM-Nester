@@ -1,0 +1,81 @@
+{%  extends 'base.html.twig' %}
+
+{% block title "Nester ~ Historique" %}
+
+{% block body %}
+    <div class="div container d-flex">
+        <div class="div container justify-content-start border border-danger rounded m-5 px-4 py-5" style="background-color: #8970bb; font-size:35px">
+            Harvester : XKeyscore-Harvester
+        </div>
+        <div class="container justify-content-end border border-danger rounded m-5 px-4 py-5" style="background-color: #8970bb; font-size:35px">
+            Version du Harvester : 1.6.7
+        </div>
+        <div class="container justify-content-end m-5 px-4 py-5" style="width: 30%;">
+            <a href="#"><button type="button" class="btn btn-dark ">Historique des scans de ports sur ce Harvester</button></a>
+        </div>
+    </div>
+    <p>Résultats du dernier scan:</p>
+    <div class="container d-flex">
+            <table class="table mb-5 px-4 py-5">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Adresse IP</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Système d'exploitation</th>
+                    <th scope="col">Adresse MAC</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, host in hosts %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ key }}</td>
+                        <td>{{ host.status }}</td>
+                        <td>{{ host.os }}</td>
+                        <td>{{ host.mac }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    <p>Historique des scans:</p>
+    <div class="container d-flex">
+        <table class="table mb-5 px-4 py-5">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date de réalisation</th>
+                <th scope="col">Nombre de machines détectées</th>
+                <th scope="col">Résultats</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>10/03/2024</td>
+                <td>2</td>
+                <td>
+                    <a href="#"><button type="button" class="btn btn-dark">Résultat</button></a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>09/03/2024</td>
+                <td>4</td>
+                <td>
+                    <a href="#"><button type="button" class="btn btn-dark">Résultat</button></a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>07/03/2024</td>
+                <td>3</td>
+                <td>
+                    <a href="#"><button type="button" class="btn btn-dark">Résultat</button></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{%  endblock %}

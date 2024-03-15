@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\InformationsRepository;
+use App\Repository\NetworksHistoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: InformationsRepository::class)]
-class Informations
+#[ORM\Entity(repositoryClass: NetworksHistoryRepository::class)]
+class NetworksHistory
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,11 +16,14 @@ class Informations
     #[ORM\Column(length: 255)]
     private ?string $ip = null;
 
-    #[ORM\Column]
-    private ?bool $up = null;
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
 
     #[ORM\Column(length: 255)]
     private ?string $os = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mac = null;
 
     public function getId(): ?int
     {
@@ -39,14 +42,14 @@ class Informations
         return $this;
     }
 
-    public function isUp(): ?bool
+    public function getStatus(): ?string
     {
-        return $this->up;
+        return $this->status;
     }
 
-    public function setUp(bool $up): static
+    public function setStatus(string $status): static
     {
-        $this->up = $up;
+        $this->status = $status;
 
         return $this;
     }
@@ -59,6 +62,18 @@ class Informations
     public function setOs(string $os): static
     {
         $this->os = $os;
+
+        return $this;
+    }
+
+    public function getMac(): ?string
+    {
+        return $this->mac;
+    }
+
+    public function setMac(string $mac): static
+    {
+        $this->mac = $mac;
 
         return $this;
     }

@@ -39,7 +39,18 @@ class DashboardController extends AbstractController{
 
     #[Route('/harvester/{slug}', name: 'harvester.show')]
     public function show(Request $request) {
-        return new Response('test');
+
+        // Read the JSON file
+        $json = file_get_contents('A:\subnet_scan_results.json');
+
+        // Decode the JSON file
+        $json_data = json_decode($json,true);
+
+
+        return $this->render('dashboard/show.html.twig', [
+            'hosts' => $json_data
+            ]);
+        #return new Response('test');
     }
 
 }
